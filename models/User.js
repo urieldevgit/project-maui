@@ -17,7 +17,13 @@ const userSchema = new mongoose.Schema({
     trim: true,
   },
   password: {
-
+    type: String,
+    required: true,
+    trim: true,
+  },
+  is_active: {
+    type: Boolean,
+    default: true,
   },
 }, { timestamps: true, versionKey: false });
 
