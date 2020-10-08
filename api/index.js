@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 
-const { PORT } = process.env;
+const { PORT } = process.env || 4000;
 
 const router = require('../routes');
 
