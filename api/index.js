@@ -1,4 +1,6 @@
 const express = require('express');
+const { errors } = require('celebrate');
+const { showDate } = require('../middlewares');
 
 const app = express();
 
@@ -9,6 +11,9 @@ const router = require('../routes');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(showDate);
+
 app.use('/v1/', router);
+app.use(errors());
 
 module.exports = { app, PORT };
