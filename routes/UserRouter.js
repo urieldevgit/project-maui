@@ -9,8 +9,8 @@ const URL = '/users';
 
 router.post(URL, UserValidator.create, UserController.create);
 router.get(URL, UserController.getUsers);
-router.get(`${URL}/:id`, UserController.getUser);
-router.put(`${URL}/:id`, UserController.updateUser);
-router.delete(`${URL}/:id`, UserController.deleteUser);
+router.get(`${URL}/:id`, UserValidator.getUser, UserController.getUser);
+router.put(`${URL}/:id`, UserValidator.updateUser, UserController.updateUser);
+router.delete(`${URL}/:id`, UserValidator.deleteUser, UserController.deleteUser);
 
 module.exports = router;
