@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 module.exports = {
   showDate: (req, res, next) => {
     const date = new Date();

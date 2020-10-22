@@ -11,4 +11,5 @@ module.exports = {
     Object.assign(user, body);
     return user.save();
   },
+  getUserByEmail: (email) => User.findOne({ email }),
 };
