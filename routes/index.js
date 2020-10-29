@@ -7,7 +7,7 @@ const AuthRouter = require('./AuthRouter');
 
 router.get('/', (req, res) => res.status(200).send('Happy API :D'));
 
-router.use(UserRouter);
 router.use(AuthRouter);
+router.use(UserRouter);
 
 module.exports = router;

@@ -1,5 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 const { UserService } = require('../services');
 const { comparePasswords } = require('../utils');
+const Utils = require('../utils');
 
 module.exports = {
   create: async (req, res) => {
@@ -75,9 +77,17 @@ module.exports = {
       if (!user) res.status(400).send({ message: 'Error on credentials' });
       const isValid = comparePasswords(password, user.password);
       if (!isValid) res.status(400).send({ message: 'Error on credentials' });
-      res.status(200).send({ message: 'Login Success' });
+      // adding jwt
+      const payload = {
+        id: user._id,
+        first_name: user.first_name,
+        email: user.email,
+      };
+      const token = Utils.createToken(payload);
+      if (!token) res.status(500).send({ message: 'Error creating user token' });
+      res.status(200).send({ message: 'Login Success', token });
     } catch (error) {
-      res.status(409).send({ error });
+      res.status(404).send({ error });
     }
   },
 };

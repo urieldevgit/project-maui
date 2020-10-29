@@ -4,9 +4,11 @@ const router = express.Router();
 
 const { UserValidator } = require('../validators');
 const { UserController } = require('../controllers');
+const { validateToken } = require('../middlewares');
 
 const URL = '/users';
 
+router.use(validateToken);
 router.post(URL, UserValidator.create, UserController.create);
 router.get(URL, UserController.getUsers);
 router.get(`${URL}/:id`, UserValidator.getUser, UserController.getUser);
