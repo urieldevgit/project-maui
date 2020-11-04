@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { postSchema } = require('./Post');
 
 const SALT_FACTOR = 10;
 
@@ -29,6 +30,9 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  // embedded document
+  posts: [postSchema],
+
 }, { timestamps: true, versionKey: false });
 
 // Agregar hasheo al password

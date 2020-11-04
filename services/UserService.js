@@ -12,4 +12,8 @@ module.exports = {
     return user.save();
   },
   getUserByEmail: (email) => User.findOne({ email }),
+  addPost: (user, post) => {
+    user.posts.push(post);
+    return user.save();
+  },
 };
