@@ -16,4 +16,9 @@ module.exports = {
     user.posts.push(post);
     return user.save();
   },
+  addPosts: (user, posts) => {
+    // eslint-disable-next-line no-param-reassign
+    user.posts = posts;
+    return user.save();
+  },
 };

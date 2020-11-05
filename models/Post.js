@@ -20,6 +20,10 @@ const postSchema = new mongoose.Schema({
     enum: ['PUBLIC', 'PRIVATE'],
     default: 'PUBLIC',
   },
+  is_active: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const Post = mongoose.model('Posts', postSchema);

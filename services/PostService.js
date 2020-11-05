@@ -2,11 +2,10 @@ const { Post } = require('../models');
 
 module.exports = {
   create: (body) => new Post(body),
-//   getUsers: () => User.find({ is_active: true }),
-//   getUser: (id) => User.findById(id),
-//   update: (user, body) => {
-//     Object.assign(user, body);
-//     return user.save();
-//   },
-//   getUserByEmail: (email) => User.findOne({ email }),
+  getPosts: () => Post.find({ is_active: true }),
+  getPost: (idPost) => Post.findById(idPost),
+  update: (post, body) => {
+    Object.assign(post, body);
+    return post.save();
+  },
 };
