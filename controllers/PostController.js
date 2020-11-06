@@ -31,8 +31,10 @@ module.exports = {
 
       // Obtener los posts de ese usuario
       const { posts } = user;
+
+      const activePosts = posts.filter((item) => item.is_active === true);
       // Regresar los posts
-      res.status(200).send({ posts });
+      res.status(200).send({ posts: activePosts });
     } catch (error) {
       res.status(400).send({ message: 'Error updating post to user', error });
     }
@@ -120,6 +122,27 @@ module.exports = {
       const udpatedUser = await PostService.updateByIdInUser(idPost, user, body);
 
       res.status(200).send(udpatedUser.posts.id(idPost));
+    } catch (error) {
+      res.status(400).send({ message: 'Error getting user post by id', error });
+    }
+  },
+  delete: async (req, res) => {
+    try {
+      const { idUser, idPost } = req.params;
+
+      // Obtener y validar usuario
+      const user = await UserService.getUser(idUser);
+      if (!user) res.status(404).send({ message: 'User not found' });
+
+      // Obtenemos el post del usuario
+      // No lleva await porque no invocamos ninguna promesa
+      const post = PostService.getByIdInUser(idPost, user);
+      if (!post) res.status(404).send({ message: 'Post not found' });
+
+      // Actualizamos el post
+      await PostService.updateByIdInUser(idPost, user, { is_active: false });
+
+      res.status(200).send({ message: 'Post was removed' });
     } catch (error) {
       res.status(400).send({ message: 'Error getting user post by id', error });
     }

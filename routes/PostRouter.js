@@ -17,4 +17,6 @@ router.get(`${baseUrl}/:idPost`, PostValidator.getPost, PostController.get);
 // router.put(`${baseUrl}/:idPost`, PostValidator.update, PostController.updatePost);
 router.put(`${baseUrl}/:idPost`, PostValidator.update, PostController.update);
 
+router.delete(`${baseUrl}/:idPost`, PostValidator.delete, PostController.delete);
+
 module.exports = router;
