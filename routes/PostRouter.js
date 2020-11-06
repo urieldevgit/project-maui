@@ -11,8 +11,10 @@ router.post(baseUrl, PostValidator.create, PostController.create);
 
 router.get(baseUrl, PostValidator.getPosts, PostController.getPosts);
 
-router.get(`${baseUrl}/:idPost`, PostValidator.getPost, PostController.getPost);
+// router.get(`${baseUrl}/:idPost`, PostValidator.getPost, PostController.getPost);
+router.get(`${baseUrl}/:idPost`, PostValidator.getPost, PostController.get);
 
-router.put(`${baseUrl}/:idPost`, PostValidator.update, PostController.updatePost);
+// router.put(`${baseUrl}/:idPost`, PostValidator.update, PostController.updatePost);
+router.put(`${baseUrl}/:idPost`, PostValidator.update, PostController.update);
 
 module.exports = router;
