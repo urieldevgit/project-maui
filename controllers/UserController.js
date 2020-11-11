@@ -18,6 +18,7 @@ module.exports = {
   getUsers: async (req, res) => {
     try {
       const users = await UserService.getUsers();
+      if (!users) res.status(404).send({ message: 'Users not found' });
       res.status(201).send({ users });
     } catch (error) {
       res.status(409).send({ error });
@@ -26,6 +27,7 @@ module.exports = {
   getUser: async (req, res) => {
     try {
       const user = await UserService.getUser(req.params.id);
+      if (!user) res.status(404).send({ message: 'User not found' });
       res.status(201).send({ user });
     } catch (error) {
       res.status(409).send({ error });
@@ -54,6 +56,7 @@ module.exports = {
   getUserByEmail: async (req, res) => {
     try {
       const user = await UserService.getUserByEmail(req.params.email);
+      if (!user) res.status(404).send({ message: 'User not found' });
       res.status(201).send({ user });
     } catch (error) {
       res.status(409).send({ error });
